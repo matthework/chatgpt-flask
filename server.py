@@ -44,7 +44,6 @@ def chat():
 
         # Get the response text
         response = chat_completion.choices[0].message.content
-        print(f"response: {response}")
 
         # Send back the response to the frontend
         return jsonify({"response": response})
