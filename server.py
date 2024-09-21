@@ -58,4 +58,4 @@ if __name__ == "__main__":
     else:
         app.config["DEBUG"] = True
 
-    app.run()
+    app.run(port=5000)
