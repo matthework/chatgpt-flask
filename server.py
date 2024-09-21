@@ -8,7 +8,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 # Allow only specific origin (the URL of frontend app)
-CORS(app, resources={r"/*": {"origins": os.getenv("CLIENT_URL")}})
+# CORS(app, resources={r"/*": {"origins": os.getenv("CLIENT_URL")}})
+# Enable CORS for all routes
+CORS(app)
+
 
 # Load environment variables from a .env file
 load_dotenv(override=True)
@@ -58,4 +61,4 @@ if __name__ == "__main__":
     else:
         app.config["DEBUG"] = True
 
-    app.run(port=5000)
+    app.run()
