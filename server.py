@@ -12,11 +12,10 @@ app = Flask(__name__)
 # Enable CORS for all routes
 CORS(app)
 
-
 # Load environment variables from a .env file
 load_dotenv(override=True)
 
-# OpenAI API v1.46.1
+# OpenAI API v1.47.0
 client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
 )
@@ -24,7 +23,7 @@ client = OpenAI(
 
 @app.route("/")
 def home():
-    return "Server is ready!"
+    return "Flask server is ready!"
 
 
 @app.route("/api/chatgpt", methods=["POST"])
