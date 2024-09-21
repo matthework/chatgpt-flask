@@ -7,8 +7,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Allow only specific origin (React app on port 3000)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+# Allow only specific origin (the URL of frontend app)
+CORS(app, resources={r"/*": {"origins": os.getenv("CLIENT_URL")}})
 
 # Load environment variables from a .env file
 load_dotenv(override=True)
