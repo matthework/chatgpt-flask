@@ -3,13 +3,17 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# Allow only specific origin (React app on port 3000)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 # Load environment variables from a .env file
 load_dotenv(override=True)
 
-# OpenAI API 1.47+
+# OpenAI API v1.46.1
 client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
 )
@@ -40,6 +44,7 @@ def chat():
 
         # Get the response text
         response = chat_completion.choices[0].message.content
+        print(f"response: {response}")
 
         # Send back the response to the frontend
         return jsonify({"response": response})
