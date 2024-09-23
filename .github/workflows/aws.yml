@@ -41,9 +41,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to AWS Elastic Beanstalk
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          FLASK_ENV: ${{ secrets.FLASK_ENV }}
         run: |
           eb init -p python-3.9 chatgpt-flask-server --region ap-southeast-2 --platform python-3.9
           eb deploy chatgpt-flask-server-env
