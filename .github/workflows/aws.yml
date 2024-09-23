@@ -40,7 +40,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy to Elastic Beanstalk
+      - name: Deploy to AWS Elastic Beanstalk
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FLASK_ENV: ${{ secrets.FLASK_ENV }}
