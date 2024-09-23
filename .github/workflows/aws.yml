@@ -7,6 +7,7 @@ on:
 
 jobs:
   deploy:
+    environment: Github_Actions
     runs-on: ubuntu-latest
 
     steps:
@@ -31,9 +32,9 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: my-projects-gallery-aws
-          environment_name: my-projects-gallery-aws-env
+          application_name: chatgpt-flask-server
+          environment_name: chatgpt-flask-server-env
           version_label: ${{ github.sha }}
-          region: ap-southeast-2
+          region: ${{ secrets.AWS_REGION }}
           use_existing_version_if_available: true
           deployment_package: deploy.zip
