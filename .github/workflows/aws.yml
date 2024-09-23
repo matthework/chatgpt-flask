@@ -34,6 +34,6 @@ jobs:
           application_name: my-projects-gallery-aws
           environment_name: my-projects-gallery-aws-env
           version_label: ${{ github.sha }}
-          region: ${{ secrets.AWS_REGION }}
+          region: ap-southeast-2
           use_existing_version_if_available: true
           deployment_package: deploy.zip
