@@ -23,23 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*' '.venv/*'
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Deploy to AWS Elastic Beanstalk
-        run: |
-          zip -r deploy.zip .  # Zip the project
-          aws elasticbeanstalk create-application-version --application-name chatgpt-flask-server --version-label ${{ github.sha }} --source-bundle S3Bucket=my-bucket,S3Key=deploy.zip
-          aws elasticbeanstalk update-environment --environment-name chatgpt-flask-server-env --version-label ${{ github.sha }}
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: my-projects-gallery-aws
+          environment_name: my-projects-gallery-aws-env
+          version_label: ${{ github.sha }}
+          region: ${{ secrets.AWS_REGION }}
+          use_existing_version_if_available: true
+          deployment_package: deploy.zip
