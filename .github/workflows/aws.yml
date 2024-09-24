@@ -19,6 +19,12 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Setup Virtual Environment
+        run: |
+          pip install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
