@@ -7,5 +7,14 @@
     "project_name": "chatgpt-flask",
     "runtime": "python3.9",
     "s3_bucket": "matthework-aws-bucket"
+  },
+  "prod": {
+    "app_function": "server.app",
+    "aws_region": "ap-southeast-2",
+    "s3_bucket": "matthework-aws-bucket",
+    "api_gateway": true,
+    "use_precompiled_packages": true,
+    "keep_warm": true,
+    "aws_profile": "aws-user"
   }
 }
