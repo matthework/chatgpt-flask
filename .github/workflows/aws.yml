@@ -19,11 +19,11 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Setup Virtual Environment
-        run: |
-          pip install virtualenv
-          virtualenv venv
-          source venv/bin/activate
+      # - name: Setup Virtual Environment
+      #   run: |
+      #     pip install virtualenv
+      #     virtualenv venv
+      #     source venv/bin/activate
 
       - name: Install dependencies
         run: |
@@ -38,11 +38,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: zappa deploy prod
+        run: zappa deploy
 
       # - name: Update Zappa deployment
       #   env:
       #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #     AWS_REGION: ${{ secrets.AWS_REGION }}
-      #   run: zappa update prod
+      #   run: zappa update dev
