@@ -3,7 +3,6 @@
     "app_function": "server.app",
     "aws_region": "ap-southeast-2",
     "exclude": ["boto3", "dateutil", "botocore", "s3transfer", "concurrent"],
-    "profile_name": "aws-user",
     "project_name": "chatgpt-flask",
     "runtime": "python3.9",
     "s3_bucket": "matthework-aws-bucket"
